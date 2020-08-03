@@ -1,0 +1,6 @@
+on property:sys.boot_completed=1
+    mkdir -p /data/misc/audiohq
+    service audiohq /system/bin/audiohqserver
+        class core
+        user root
+        group root

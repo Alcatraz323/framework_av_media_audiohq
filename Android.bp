@@ -1,0 +1,57 @@
+cc_library_headers {
+    name: "libaudioheadquarter_headers",
+    export_include_dirs: ["include"],
+    vendor_available: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libaudioheadquarter",
+    compile_multilib: "both",
+    multilib: {
+        lib64: {
+            srcs: ["lib64/libaudioheadquarter.so"],
+        },
+        lib32: {
+            srcs: ["lib/libaudioheadquarter.so"],
+        },
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "libaudioprocessing",
+    compile_multilib: "both",
+    multilib: {
+        lib64: {
+            srcs: ["lib64/libaudioprocessing.so"],
+        },
+        lib32: {
+            srcs: ["lib/libaudioprocessing.so"],
+        },
+    },
+}
+
+cc_prebuilt_binary {
+    name: "audiohq",
+    multilib: {
+        lib64: {
+            srcs: ["bin64/audiohq"],
+        },
+        lib32: {
+            srcs: ["bin/audiohq"],
+        },
+    },
+}
+
+cc_prebuilt_binary {
+    name: "audiohqserver",
+    multilib: {
+        lib64: {
+            srcs: ["bin64/audiohqserver"],
+        },
+        lib32: {
+            srcs: ["bin/audiohqserver"],
+        },
+    },
+    init_rc: ["audiohq_service.rc"],
+}
+

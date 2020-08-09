@@ -5,7 +5,6 @@ service audiohq /system/bin/audiohqserver
     class main
     user root
     group root readproc
-    seclabel u:r:audiohq:s0
     disabled
 
 on property:sys.boot_completed=1

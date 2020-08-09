@@ -1,6 +1,9 @@
-type audiohq, domain;
-typeattribute audiohq coredomain;
+type audiohq, domain, coredomain;
 type audiohq_exec, exec_type, file_type, system_file_type;
+type audiohq_service, service_manager_type;
+type audiohq_data_file, file_type, data_file_type, core_data_file_type;
+
+typeattribute audiohq mlstrustedsubject;
 
 init_daemon_domain(audiohq)
 
@@ -9,9 +12,20 @@ binder_call(audiohq, binderservicedomain)
 binder_call(audiohq, appdomain)
 binder_service(audiohq)
 
-wakelock_use(audiohq)
+allow audiohq self:process setcurrent;
 
-allow audioserver default_android_service:service_manager find;
-allow priv_app default_android_service:service_manager find;
-allow audiohq system_server:file rw_dir_perms;
-allow audiohq system_server:dir rw_dir_perms;
+allow audiohq audiohq_data_file:dir { rw_dir_perms create_dir_perms };
+allow audiohq audiohq_data_file:file { rw_file_perms create_file_perms };
+
+add_service(audiohq, audiohq_service)
+
+allow audioserver audiohq_service:service_manager find;
+allow priv_app audiohq_service:service_manager find;
+allow platform_app audiohq_service:service_manager find;
+allow shell audiohq_service:service_manager find;
+
+allow audiohq appdomain:dir { getattr search };
+allow audiohq appdomain:file { r_file_perms };
+allow audiohq system_server:dir { getattr search };
+allow audiohq system_server:file { r_file_perms };
+allow audiohq proc_cmdline:file { r_file_perms };

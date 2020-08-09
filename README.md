@@ -40,8 +40,8 @@
         audiohqserver
 
 
-4.对于有vendor分区的设备，可以将audiohq.te放到device/\[manufacture\]/\[devicename\]/sepolicy里并将file_context的内容进行追加
-没有的如(cancro),可放在system/sepolicy/vendor,并追加该文件夹下的file_context
+4.对于有vendor分区的设备，可以将audiohq.te放到device/\[manufacture\]/\[devicename\]/sepolicy里并将file_context，service_context的内容追加到同名文件
+没有的如(cancro),可放在system/sepolicy/vendor,并追加该文件夹下的file_context,service_context
 
 
 5.正常编译

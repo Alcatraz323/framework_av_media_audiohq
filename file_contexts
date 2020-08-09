@@ -1,1 +1,4 @@
-/system/bin/audiohq     u:object_r:audiohq_exec:s0
+#audiohq
+/data/misc/audiohq(/.*)?    u:object_r:audiohq_data_file:s0
+/system/bin/audiohq         u:object_r:audiohq_exec:s0
+/system/bin/audiohqserver   u:object_r:audiohq_exec:s0

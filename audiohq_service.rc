@@ -1,6 +1,12 @@
+on post-fs-data
+    mkdir /data/misc/audiohq 0755 root root
+
+service audiohq /system/bin/audiohqserver
+    class main
+    user root
+    group root readproc
+    seclabel u:r:audiohq:s0
+    disabled
+
 on property:sys.boot_completed=1
-    mkdir -p /data/misc/audiohq
-    service audiohq /system/bin/audiohqserver
-        class core
-        user root
-        group root
+    start audiohq

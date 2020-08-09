@@ -17,6 +17,8 @@ allow audiohq self:process setcurrent;
 allow audiohq audiohq_data_file:dir { rw_dir_perms create_dir_perms };
 allow audiohq audiohq_data_file:file { rw_file_perms create_file_perms };
 
+dontaudit audiohq self:capability dac_override;
+
 add_service(audiohq, audiohq_service)
 
 allow audioserver audiohq_service:service_manager find;
